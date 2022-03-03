@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
-#include <ctime>
+
 void summa()
 {
 	int a, b, c;
