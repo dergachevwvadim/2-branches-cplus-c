@@ -64,25 +64,43 @@ int main()
 	}
 	case 6:
 	{
-		srand(time(NULL));
 		const int N = 3;
-		int a[N][N];
+		int a[N][N],b[N][N] ;
 		for (int i = 0; i < N; i++)
 		{
 			for (int j = 0; j < N; j++)
 			{
-				a[i][j] = rand() % 100;
+				scanf_s("%d", &a[i][j]);
 			}
-		}
-		for (int i = 0; i < N; i++)
-		{
-			for (int j = 0; j < N; j++)
+
+						for (int i = 0; i < N; i++)
+						{
+							for (int j = 0; j < N; j++)		
+							{
+								scanf_s("%d", &b[i][j]);
+							}
+						}
+
+
+			for (int i = 0; i < N; i++)
 			{
-				printf("%d ", a[i][j]);
+				for (int j = 0; j < N; j++)
+				{
+					printf("%d ", a[i][j]);
+				}  
+				printf("\n");
+				
+				for (int i = 0; i < N; i++)
+				{
+					for (int j = 0; j < N; j++)
+					{
+						printf("%d ", b[i][j]);
+					}
+				}
+				printf("\n");
 			}
-			printf("\n");
-		}
 			
+		}
 		
 		break;
 	}
