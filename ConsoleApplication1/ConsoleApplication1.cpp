@@ -4,14 +4,36 @@
 #include <math.h>
 #include <stdlib.h>
 
-void summa()
+double summ(double x, double y)
 {
-	int a, b, c;
-	scanf_s("%d", &a);
-	scanf_s("%d", &b);
-	printf("\nC=%d\n", a + b);
-
+	return x + y;
 }
+
+double sub(double x, double y)
+{
+	return x - y;
+}
+
+double multip(double x, double y)
+{
+	return x * y;
+}
+
+double div(double x, double y)
+{
+	return x / y;
+}
+
+double exp(double x, double y)
+{
+	return pow(x,y);
+}
+
+void print_on_screen(double x)
+{
+	printf("X=%lf\n", x);
+}
+
 
 
 int main()
@@ -23,43 +45,49 @@ int main()
 	{
 	case 1:
 	{
-		{
-			summa();
-			break;
-		}
+	
+		double x, y, z;
+		scanf_s("%lf", &z);
+		scanf_s("%lf", &y);
+		x=summ(z, y);
+		print_on_screen(x);
+		break;
+
 	}
 	case 2:
 	{
-		int a, b, c;
-		scanf_s("%d", &a);
-		scanf_s("%d", &b);
-		printf("\nC=%d\n", a - b);
+		double x, y, z;
+		scanf_s("%lf", &z);
+		scanf_s("%lf", &y);
+		x = sub(z, y);
+		print_on_screen(x);
 		break;
 	}
 	case 3:
 	{
-		int a, b, c;
-		scanf_s("%d", &a);
-		scanf_s("%d", &b);
-		printf("\nC=%d\n", a * b);
+		double x, y, z;
+		scanf_s("%lf", &z);
+		scanf_s("%lf", &y);
+		x = multip(z, y);
+		print_on_screen(x);
 		break;
 	}
 	case 4:
 	{
-		int a, b, c;
-		scanf_s("%d", &a);
-		scanf_s("%d", &b);
-		printf("\nC=%d\n", a / b);
+		double x, y, z;
+		scanf_s("%lf", &z);
+		scanf_s("%lf", &y);
+		x = div(z, y);
+		print_on_screen(x);
 		break;
 	}
 	case 5:
 	{
-		double a, b;
-		int c;
-		scanf_s("%lf", &a);
-		scanf_s("%lf", &b);
-		c = pow(a, b);
-		printf("\nC=%d\n", c);
+		double x, y, z;
+		scanf_s("%lf", &z);
+		scanf_s("%lf", &y);
+		x = pow(z, y);
+		print_on_screen(x);
 		break;
 	}
 	case 6:
