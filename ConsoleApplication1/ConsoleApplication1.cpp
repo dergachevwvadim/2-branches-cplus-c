@@ -34,6 +34,58 @@ void print_on_screen(double x)
 	printf("X=%lf\n", x);
 }
 
+const int N = 3;
+double a[N][N], b[N][N];
+void inp_matrix1(double x[][N])
+{
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < N; j++)
+		{
+			scanf_s("%lf", &a[i][j]);
+		}
+	}
+}
+void inp_matrix2(double x[][N])
+{
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < N; j++)
+		{
+			scanf_s("%lf", &b[i][j]);
+		}
+	}
+}
+
+void print_matrix(double x[][N])
+{
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < N; j++)
+		{
+			printf("%lf", a[i][j]);
+		}
+		printf("\n");
+	}
+
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < N; j++)
+		{
+			printf("%lf", b[i][j]);
+		}
+		printf("\n");
+	}
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < N; j++)
+		{
+			printf("%lf", a[i][j] + b[i][j]);
+		}
+		printf("\n");
+	}
+}
+
 
 
 int main()
@@ -45,11 +97,11 @@ int main()
 	{
 	case 1:
 	{
-	
+
 		double x, y, z;
 		scanf_s("%lf", &z);
 		scanf_s("%lf", &y);
-		x=summ(z, y);
+		x = summ(z, y);
 		print_on_screen(x);
 		break;
 
@@ -92,61 +144,23 @@ int main()
 	}
 	case 6:
 	{
-		const int N = 3;
-		int a[N][N], b[N][N];
-		for (int i = 0; i < N; i++)
-		{
-			for (int j = 0; j < N; j++)
-			{
-				scanf_s("%d", &a[i][j]);
-			}
-		}
+	{
+		inp_matrix1(a);
+		inp_matrix2(b);
+		print_matrix(a);
+	}
 
-		for (int i = 0; i < N; i++)
-		{
-			for (int j = 0; j < N; j++)
-			{
-				scanf_s("%d", &b[i][j]);
-			}
-		}
-
-
-		for (int i = 0; i < N; i++)
-		{
-			for (int j = 0; j < N; j++)
-			{
-				printf("%d ", a[i][j]);
-			}
-			printf("\n");
-		}
-
-		for (int i = 0; i < N; i++)
-		{
-			for (int j = 0; j < N; j++)
-			{
-				printf("%d ", b[i][j]);
-			}
-			printf("\n");
-		}
-		for (int i = 0; i < N; i++)
-		{
-			for (int j = 0; j < N; j++)
-			{
-				printf("%d", a[i][j] + b[i][j]);
-			}
-			printf("\n");
-		}
+		
 		break;
 	}
 	case 7:
 	{
-		const int N = 3;
-		int a[N][N], b[N][N];
+
 		for (int i = 0; i < N; i++)
 		{
 			for (int j = 0; j < N; j++)
 			{
-				scanf_s("%d", &a[i][j]);
+				scanf_s("%lf", &a[i][j]);
 			}
 		}
 
@@ -154,33 +168,34 @@ int main()
 		{
 			for (int j = 0; j < N; j++)
 			{
-				scanf_s("%d", &b[i][j]);
+				scanf_s("%lf", &b[i][j]);
 			}
 		}
+
 
 
 		for (int i = 0; i < N; i++)
 		{
 			for (int j = 0; j < N; j++)
 			{
-				printf("%d ", a[i][j]);
-			}
-			printf("\n");
-		}
-
-		for (int i = 0; i < N; i++)
-		{
-			for (int j = 0; j < N; j++)
-			{
-				printf("%d ", b[i][j]);
+				printf("%lf", a[i][j]);
 			}
 			printf("\n");
 		}
+
 		for (int i = 0; i < N; i++)
 		{
 			for (int j = 0; j < N; j++)
 			{
-				printf("%d", a[i][j] - b[i][j]);
+				printf("%lf", b[i][j]);
+			}
+			printf("\n");
+		}
+		for (int i = 0; i < N; i++)
+		{
+			for (int j = 0; j < N; j++)
+			{
+				printf("%lf", a[i][j] - b[i][j]);
 			}
 			printf("\n");
 		}
@@ -188,20 +203,19 @@ int main()
 	}
 	case 8:
 	{
-		const int N = 3;
-		int a[N][N];
+
 		for (int i = 0; i < N; i++)
 		{
 			for (int j = 0; j < N; j++)
 			{
-				scanf_s("%d", &a[i][j]);
+				scanf_s("%lf", &a[i][j]);
 			}
 		}
 		for (int i = 0; i < N; i++)
 		{
 			for (int j = 0; j < N; j++)
 			{
-				printf("%d ", a[i][j]);
+				printf("%lf", a[i][j]);
 			}
 			printf("\n");
 			}
