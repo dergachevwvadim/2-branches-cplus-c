@@ -35,24 +35,13 @@ void print_on_screen(double x)
 }
 
 const int N = 3;
-double a[N][N], b[N][N];
-void inp_matrix1(double x[][N])
+void inp_matrix(double x[][N])
 {
 	for (int i = 0; i < N; i++)
 	{
 		for (int j = 0; j < N; j++)
 		{
-			scanf_s("%lf", &a[i][j]);
-		}
-	}
-}
-void inp_matrix2(double x[][N])
-{
-	for (int i = 0; i < N; i++)
-	{
-		for (int j = 0; j < N; j++)
-		{
-			scanf_s("%lf", &b[i][j]);
+			scanf_s("%lf", &x[i][j]);
 		}
 	}
 }
@@ -63,34 +52,50 @@ void print_matrix(double x[][N])
 	{
 		for (int j = 0; j < N; j++)
 		{
-			printf("%lf", a[i][j]);
-		}
-		printf("\n");
-	}
-
-	for (int i = 0; i < N; i++)
-	{
-		for (int j = 0; j < N; j++)
-		{
-			printf("%lf", b[i][j]);
-		}
-		printf("\n");
-	}
-	for (int i = 0; i < N; i++)
-	{
-		for (int j = 0; j < N; j++)
-		{
-			printf("%lf", a[i][j] + b[i][j]);
+			printf("%lf", x[i][j]);
 		}
 		printf("\n");
 	}
 }
 
+void summ_matrix(double x[][N], double y[][N], double result[][N])
+{
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < N; j++)
+		{
+			printf("%lf", result[i][j] = x[i][j] + y[i][j]);
+		}
+	}
+}
 
+
+void sub_matrix(double x[][N], double y[][N], double result[][N])
+{
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < N; j++)
+		{
+			printf("%lf", x[i][j] - y[i][j]);
+		}
+		printf("\n");
+	}
+}
+
+double det_matrix(double x[][N])
+{
+	double d = 0;
+	{
+		return d = x[0][0] * x[1][1] * x[2][2] + x[0][1] * x[1][2] * x[2][0]
+			+ x[1][0] * x[2][1] * x[0][2] - x[2][0] * x[1][1] * x[0][2] -
+			x[2][1] * x[1][2] * x[0][0] - x[1][0] * x[0][1] * x[2][2];
+	}
+}
 
 int main()
 {
 	int p;
+	double a[N][N], b[N][N], res[N][N];
 	printf("What we want to do?\n 1-summ;\n 2-sub; \n 3-multip; \n 4-div; \n 5-exp; \n 6-summ_matrix;\n 7-sub_matrix;\n 8-det_matrix;\n");
 	scanf_s("%d", &p);
 	switch (p)
@@ -145,12 +150,11 @@ int main()
 	case 6:
 	{
 	{
-		inp_matrix1(a);
-		inp_matrix2(b);
-		print_matrix(a);
-	}
-
-		
+			inp_matrix(a);
+			inp_matrix(b);
+			summ_matrix(a, b, res);
+			print_matrix(res);
+	}	
 		break;
 	}
 	case 7:
@@ -230,7 +234,7 @@ int main()
 		}
 		break;
 	}
-
+	
 
 	default:
 	{
