@@ -34,31 +34,45 @@ void print_on_screen(double x)
 	printf("X=%lf\n", x);
 }
 
-const int N = 3;
-void inp_matrix(double x[][N])
+void input_array(double** x, int X_arr, int Y_arr)
 {
-	for (int i = 0; i < N; i++)
+	int arrMax = 100, arrMin = 0;
+	for (int i = 0; i < X_arr; i++)
+		for (int j = 0; j < Y_arr; j++)
+			x[i][j] = arrMin + (arrMax - arrMin) * ((double)rand() / RAND_MAX);
+
+}
+
+void input_arrai(double** y, int X_arr, int Y_arr)
+{
+	int arrMax = 100, arrMin = 0;
+	for (int i = 0; i < X_arr; i++)
+		for (int j = 0; j < Y_arr; j++)
+			y[i][j] = arrMin + (arrMax - arrMin) * ((double)rand() / RAND_MAX);
+
+}
+
+
+void print_array(double** x, int X_arr, int Y_arr) 
+{
+	for (int i = 0; i < X_arr; i++) 
 	{
-		for (int j = 0; j < N; j++)
-		{
-			scanf_s("%lf", &x[i][j]);
-		}
+		for (int j = 0; j < Y_arr; j++)
+			printf("%lf ", x[i][j]);
+		printf("\n ");
+	}
+}
+void print_arrai(double** y, int X_arr, int Y_arr)
+{
+	for (int i = 0; i < X_arr; i++)
+	{
+		for (int j = 0; j < Y_arr; j++)
+			printf("%lf ", y[i][j]);
+		printf("\n ");
 	}
 }
 
-void print_matrix(double x[][N])
-{
-	for (int i = 0; i < N; i++)
-	{
-		for (int j = 0; j < N; j++)
-		{
-			printf("%lf", x[i][j]);
-		}
-		printf("\n");
-	}
-}
-
-void summ_matrix(double x[][N], double y[][N], double result[][N])
+/* void summ_matrix(double x[][N], double y[][N], double result[][N])
 {
 	for (int i = 0; i < N; i++)
 	{
@@ -91,11 +105,12 @@ double det_matrix(double x[][N])
 			x[2][1] * x[1][2] * x[0][0] - x[1][0] * x[0][1] * x[2][2];
 	}
 }
-
+*/
 int main()
-{
+{	
+	int arr_X, arr_Y;
 	int p;
-	double a[N][N], b[N][N], res[N][N];
+	double** x;
 	printf("What we want to do?\n 1-summ;\n 2-sub; \n 3-multip; \n 4-div; \n 5-exp; \n 6-summ_matrix;\n 7-sub_matrix;\n 8-det_matrix;\n");
 	scanf_s("%d", &p);
 	switch (p)
@@ -149,15 +164,25 @@ int main()
 	}
 	case 6:
 	{
-	{
-			inp_matrix(a);
-			inp_matrix(b);
-			summ_matrix(a, b, res);
-			print_matrix(res);
-	}	
+		{
+			scanf_s("%d%d", &arr_X, &arr_Y);
+			double** array_heap = (double**)malloc(arr_X * sizeof(double*));
+			for (int i = 0; i < arr_X; ++i) 
+			{
+				array_heap[i] = (double*)malloc(arr_Y * sizeof(double));
+			}
+			input_array(array_heap, arr_X, arr_Y);
+			input_arrai(array_heap, arr_X, arr_Y);
+			print_array(array_heap, arr_X, arr_Y);
+			print_arrai(array_heap, arr_X, arr_Y);
+			for (int i = 0; i < arr_X; i++)
+				free(array_heap[i]);
+			free(array_heap);
+			return 0;
+		}
 		break;
 	}
-	case 7:
+	/*case 7:
 	{
 
 		for (int i = 0; i < N; i++)
@@ -234,7 +259,7 @@ int main()
 		}
 		break;
 	}
-	
+	*/
 
 	default:
 	{
