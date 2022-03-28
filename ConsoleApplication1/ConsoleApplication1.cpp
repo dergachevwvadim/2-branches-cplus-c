@@ -43,14 +43,6 @@ void input_array(double** x, int X_arr, int Y_arr)
 
 }
 
-void input_arrai(double** y, int X_arr, int Y_arr)
-{
-	int arrMax = 100, arrMin = 0;
-	for (int i = 0; i < X_arr; i++)
-		for (int j = 0; j < Y_arr; j++)
-			y[i][j] = arrMin + (arrMax - arrMin) * ((double)rand() / RAND_MAX);
-
-}
 
 
 void print_array(double** x, int X_arr, int Y_arr) 
@@ -62,15 +54,7 @@ void print_array(double** x, int X_arr, int Y_arr)
 		printf("\n ");
 	}
 }
-void print_arrai(double** y, int X_arr, int Y_arr)
-{
-	for (int i = 0; i < X_arr; i++)
-	{
-		for (int j = 0; j < Y_arr; j++)
-			printf("%lf ", y[i][j]);
-		printf("\n ");
-	}
-}
+
 
 /* void summ_matrix(double x[][N], double y[][N], double result[][N])
 {
@@ -167,17 +151,19 @@ int main()
 		{
 			scanf_s("%d%d", &arr_X, &arr_Y);
 			double** array_heap = (double**)malloc(arr_X * sizeof(double*));
+			double** array_heapi = (double**)malloc(arr_X * sizeof(double*));
 			for (int i = 0; i < arr_X; ++i) 
 			{
 				array_heap[i] = (double*)malloc(arr_Y * sizeof(double));
 			}
 			input_array(array_heap, arr_X, arr_Y);
-			input_arrai(array_heap, arr_X, arr_Y);
+			input_array(array_heapi, arr_X, arr_Y);
 			print_array(array_heap, arr_X, arr_Y);
-			print_arrai(array_heap, arr_X, arr_Y);
+			print_array(array_heapi, arr_X, arr_Y);
 			for (int i = 0; i < arr_X; i++)
-				free(array_heap[i]);
+			free(array_heap[i]);
 			free(array_heap);
+			free(array_heapi);
 			return 0;
 		}
 		break;
@@ -229,37 +215,33 @@ int main()
 			printf("\n");
 		}
 		break;
-	}
+	}*/
 	case 8:
 	{
-
-		for (int i = 0; i < N; i++)
 		{
-			for (int j = 0; j < N; j++)
+			scanf_s("%d%d", &arr_X, &arr_Y);
+			double** array_heap = (double**)malloc(arr_X * sizeof(double*));
+			for (int i = 0; i < arr_X; ++i)
 			{
-				scanf_s("%lf", &a[i][j]);
+				array_heap[i] = (double*)malloc(arr_Y * sizeof(double));
 			}
-		}
-		for (int i = 0; i < N; i++)
-		{
-			for (int j = 0; j < N; j++)
+			input_array(array_heap, arr_X, arr_Y);
+			print_array(array_heap, arr_X, arr_Y);
+			for (int i = 0; i < arr_X; i++)
+				free(array_heap[i]);
+			free(array_heap);
+			int d = 0;
 			{
-				printf("%lf", a[i][j]);
+				d = array_heap[0][0] * array_heap[1][1] * array_heap[2][2] + array_heap[0][1] * array_heap[1][2] * array_heap[2][0]
+					+ array_heap[1][0] * array_heap[2][1] * array_heap[0][2] - array_heap[2][0] * array_heap[1][1] * array_heap[0][2] -
+					array_heap[2][1] * array_heap[1][2] * array_heap[0][0] - array_heap[1][0] * array_heap[0][1] * array_heap[2][2];
 			}
-			printf("\n");
+			{
+				printf("%d ", d);
 			}
-		int d = 0;
-		{
-			d = a[0][0] * a[1][1] * a[2][2] + a[0][1] * a[1][2] * a[2][0]
-				+ a[1][0] * a[2][1] * a[0][2] - a[2][0] * a[1][1] * a[0][2] -
-				a[2][1] * a[1][2] * a[0][0] - a[1][0] * a[0][1] * a[2][2];
+			break;
 		}
-		{
-			printf("%d ", d);
-		}
-		break;
 	}
-	*/
 
 	default:
 	{
