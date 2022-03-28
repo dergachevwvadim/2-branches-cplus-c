@@ -94,7 +94,7 @@ int main()
 {	
 	int arr_X, arr_Y;
 	int p;
-	double** x;
+	
 	printf("What we want to do?\n 1-summ;\n 2-sub; \n 3-multip; \n 4-div; \n 5-exp; \n 6-summ_matrix;\n 7-sub_matrix;\n 8-det_matrix;\n");
 	scanf_s("%d", &p);
 	switch (p)
