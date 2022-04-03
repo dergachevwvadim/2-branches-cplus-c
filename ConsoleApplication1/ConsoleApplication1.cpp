@@ -36,9 +36,11 @@ void input_array(double** x, int X_arr, int Y_arr)
 {
 	int arrMax = 100, arrMin = 0;
 	for (int i = 0; i < X_arr; i++)
+	{ 
 		for (int j = 0; j < Y_arr; j++)
 			x[i][j] = arrMin + (arrMax - arrMin) * ((double)rand() / RAND_MAX);
-
+		printf("\n ");
+	}
 }
 
 void print_array(double** x, int X_arr, int Y_arr)
@@ -88,59 +90,80 @@ void det_matrix(double** array_heap, int X_arr, int Y_arr)
 int main()
 {
 	int arr_X, arr_Y;
-	int p;
+	//const int N = 12;
+	char p;
 	double d;
 	printf("What we want to do?\n 1-summ;\n 2-sub; \n 3-multip; \n 4-div; \n 5-exp; \n 6-summ_matrix;\n 7-sub_matrix;\n 8-det_matrix;\n");
-	scanf_s("%d", &p);
+	scanf_s("%c", &p);
 	switch (p)
 	{
-	case 1:
+	case '+':
 	{
 		double x, y, z;
 		scanf_s("%lf", &z);
 		scanf_s("%lf", &y);
 		x = summ(z, y);
 		print_on_screen(x);
+		FILE* fp;
+		fopen_s(&fp, "answer.txt", "w");
+		fprintf(fp, "%lf", x);
+		fclose(fp);
 		break;
 
 	}
-	case 2:
+	case '-':
 	{
 		double x, y, z;
 		scanf_s("%lf", &z);
 		scanf_s("%lf", &y);
 		x = sub(z, y);
 		print_on_screen(x);
+		FILE* fp;
+		fopen_s(&fp, "answer.txt", "w");
+		fprintf(fp, "%lf", x);
+		fclose(fp);
 		break;
 	}
-	case 3:
+	case '*':
 	{
 		double x, y, z;
 		scanf_s("%lf", &z);
 		scanf_s("%lf", &y);
 		x = multip(z, y);
 		print_on_screen(x);
+		FILE* fp;
+		fopen_s(&fp, "answer.txt", "w");
+		fprintf(fp, "%lf", x);
+		fclose(fp);
 		break;
 	}
-	case 4:
+	case '/':
 	{
 		double x, y, z;
 		scanf_s("%lf", &z);
 		scanf_s("%lf", &y);
 		x = div(z, y);
 		print_on_screen(x);
+		FILE* fp;
+		fopen_s(&fp, "answer.txt", "w");
+		fprintf(fp, "%lf", x);
+		fclose(fp);
 		break;
 	}
-	case 5:
+	case '^':
 	{
 		double x, y, z;
 		scanf_s("%lf", &z);
 		scanf_s("%lf", &y);
 		x = pow(z, y);
 		print_on_screen(x);
+		FILE* fp;
+		fopen_s(&fp, "answer.txt", "w");
+		fprintf(fp, "%lf", x);
+		fclose(fp);
 		break;
 	}
-	case 6:
+	case 'M':
 	{
 		{
 			scanf_s("%d%d", &arr_X, &arr_Y);
@@ -157,7 +180,9 @@ int main()
 			input_array(array_heap, arr_X, arr_Y);
 			input_array(array_heapi, arr_X, arr_Y);
 			print_array(array_heap, arr_X, arr_Y);
+			printf("\n ");
 			print_array(array_heapi, arr_X, arr_Y);
+			printf("\n ");
 			summ_matrix(array_heap, array_heapi, arr_X, arr_Y);
 			for (int i = 0; i < arr_X; i++)
 				free(array_heap[i]);
@@ -165,11 +190,15 @@ int main()
 			for (int i = 0; i < arr_X; i++)
 				free(array_heapi[i]);
 			free(array_heapi);
+			FILE* fp;
+			fopen_s(&fp, "answer.txt", "w");
+			fprintf(fp, "%lf", summ_matrix);
+			fclose(fp);
 			return 0;
 		}
 		break;
 	}
-	case 7:
+	case 'S':
 	{
 		{
 			scanf_s("%d%d", &arr_X, &arr_Y);
@@ -186,7 +215,9 @@ int main()
 			input_array(array_heap, arr_X, arr_Y);
 			input_array(array_heapi, arr_X, arr_Y);
 			print_array(array_heap, arr_X, arr_Y);
+			printf("\n ");
 			print_array(array_heapi, arr_X, arr_Y);
+			printf("\n ");
 			sub_matrix(array_heap, array_heapi, arr_X, arr_Y);
 			for (int i = 0; i < arr_X; i++)
 				free(array_heap[i]);
@@ -198,7 +229,7 @@ int main()
 		}
 	}
 	break;
-	case 8:
+	case 'd':
 	{
 		{
 			scanf_s("%d%d", &arr_X, &arr_Y);
@@ -209,6 +240,7 @@ int main()
 			}
 			input_array(array_heap, arr_X, arr_Y);
 			print_array(array_heap, arr_X, arr_Y);
+			printf("\n ");
 			det_matrix(array_heap, arr_X, arr_Y);
 			for (int i = 0; i < arr_X; i++)
 				free(array_heap[i]);
