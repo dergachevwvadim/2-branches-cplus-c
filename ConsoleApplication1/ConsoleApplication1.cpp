@@ -1,6 +1,7 @@
 ﻿#include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+#include <string.h>
 
 double summ(double x, double y)
 {
@@ -99,6 +100,19 @@ void det_matrix(double** array_heap, int X_arr, int Y_arr)
 		printf("\n ");
 	}
 }
+
+const int N = 10;
+const int N_vectors = 1;
+
+struct vector
+{
+	int x[N];
+	int y[N];
+	int z[N];
+	int x2[N];
+	int y2[N];
+	int z2[N];
+};
 
 int main()
 {
@@ -292,7 +306,27 @@ int main()
 	}
 	case 'V':
 	{
+		struct vector vector[N_vectors];
 
+		for (int i = 0; i < N_vectors; ++i)
+		{
+			printf("x1: ");
+			scanf_s("%d", &vector[i].x);
+			printf("y1: ");
+			scanf_s("%d", &vector[i].y);
+			printf("z1: ");
+			scanf_s("%d", &vector[i].z);
+		}
+		for (int i = 0; i < N_vectors; ++i)
+		{
+			printf("x2: ");
+			scanf_s("%d", &vector[i].x2);
+			printf("y2: ");
+			scanf_s("%d", &vector[i].y2);
+			printf("z2: ");
+			scanf_s("%d", &vector[i].z2);
+		}
+		return 0;
 
 
 	}
