@@ -101,17 +101,19 @@ void det_matrix(double** array_heap, int X_arr, int Y_arr)
 	}
 }
 
-const int N = 10;
 const int N_vectors = 1;
 
 struct vector
 {
-	int x[N];
-	int y[N];
-	int z[N];
-	int x2[N];
-	int y2[N];
-	int z2[N];
+	int x;
+	int y;
+	int z;
+	int x2;
+	int y2;
+	int z2;
+	int x3;
+	int y3;
+	int z3;
 };
 
 int main()
@@ -119,7 +121,7 @@ int main()
 	int arr_X, arr_Y;
 	char p;
 	double d;
-	printf("What we want to do?\n 1-summ;\n 2-sub; \n 3-multip; \n 4-div; \n 5-exp; \n 6-summ_matrix;\n 7-sub_matrix;\n 8-det_matrix;\n");
+	printf("What we want to do?\n 1-summ(+);\n 2-sub(-); \n 3-multip(*); \n 4-div(/); \n 5-exp(^); \n 6-summ_matrix(M);\n 7-sub_matrix(S);\n 8-det_matrix(d);\n 9-summ_vectors(>);\n 10-sub_vectors(<);\n 11-Length_vectors(L)\n");
 	scanf_s("%c", &p, 1);
 	switch (p)
 	{
@@ -304,7 +306,7 @@ int main()
 			break;
 		}
 	}
-	case 'V':
+	case '>':
 	{
 		struct vector vector[N_vectors];
 
@@ -325,16 +327,79 @@ int main()
 			scanf_s("%d", &vector[i].y2);
 			printf("z2: ");
 			scanf_s("%d", &vector[i].z2);
+			printf("x3= %d\n", vector[i].x3 = vector[i].x + vector[i].x2);
+			printf("y3= %d\n", vector[i].y3 = vector[i].y + vector[i].y2);
+			printf("z3= %d\n", vector[i].z3 = vector[i].z + vector[i].z2);
+			printf("vector= %d %d %d\n", vector[i].x3, vector[i].y3, vector[i].z3);
 		}
 		return 0;
 
 
 	}
+
+	case '<':
+	{
+		struct vector vector[N_vectors];
+
+		for (int i = 0; i < N_vectors; ++i)
+		{
+			printf("x1: ");
+			scanf_s("%d", &vector[i].x);
+			printf("y1: ");
+			scanf_s("%d", &vector[i].y);
+			printf("z1: ");
+			scanf_s("%d", &vector[i].z);
+		}
+		for (int i = 0; i < N_vectors; ++i)
+		{
+			printf("x2: ");
+			scanf_s("%d", &vector[i].x2);
+			printf("y2: ");
+			scanf_s("%d", &vector[i].y2);
+			printf("z2: ");
+			scanf_s("%d", &vector[i].z2);
+			printf("x3= %d\n", vector[i].x3 = vector[i].x - vector[i].x2);
+			printf("y3= %d\n", vector[i].y3 = vector[i].y - vector[i].y2);
+			printf("z3= %d\n", vector[i].z3 = vector[i].z - vector[i].z2);
+			printf("vector= %d %d %d\n", vector[i].x3, vector[i].y3, vector[i].z3);
+		}
+		return 0;
+	}
+
+	case 'L':
+	{
+		struct vector vector[N_vectors];
+
+		for (int i = 0; i < N_vectors; ++i)
+		{
+			printf("x1: ");
+			scanf_s("%d", &vector[i].x);
+			printf("y1: ");
+			scanf_s("%d", &vector[i].y);
+			printf("z1: ");
+			scanf_s("%d", &vector[i].z);
+		}
+		for (int i = 0; i < N_vectors; ++i)
+		{
+			printf("x2: ");
+			scanf_s("%d", &vector[i].x2);
+			printf("y2: ");
+			scanf_s("%d", &vector[i].y2);
+			printf("z2: ");
+			scanf_s("%d", &vector[i].z2);
+			printf("x3= %d\n", vector[i].x3 = pow((vector[i].x2 - vector[i].x), 2));
+			printf("y3= %d\n", vector[i].y3 = pow((vector[i].y2 - vector[i].y), 2));
+			printf("z3= %d\n", vector[i].z3 = pow((vector[i].z2 - vector[i].z), 2));
+			printf("length vector= %lf\n", sqrt(vector[i].x3 + vector[i].y3 + vector[i].z3));
+		}
+		return 0;
+	}
+
+
 	default:
 	{
+		printf("Error");
 	}
 	}
 	return 0;
 }
-
-
