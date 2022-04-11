@@ -36,7 +36,7 @@ void input_array(double** x, int X_arr, int Y_arr)
 {
 	int arrMax = 100, arrMin = 0;
 	for (int i = 0; i < X_arr; i++)
-	{ 
+	{
 		for (int j = 0; j < Y_arr; j++)
 			x[i][j] = arrMin + (arrMax - arrMin) * ((double)rand() / RAND_MAX);
 		printf("\n ");
@@ -52,25 +52,38 @@ void print_array(double** x, int X_arr, int Y_arr)
 		printf("\n ");
 	}
 }
-
-void summ_matrix(double** array_heap, double** array_heapi, int X_arr, int Y_arr)
+double** summ_matrix(double** array_heap, double** array_heapi, int X_arr, int Y_arr)
 {
+	double** x = (double**)malloc(X_arr * sizeof(double*));
+	for (int i = 0; i < X_arr; ++i)
+	{
+		x[i] = (double*)malloc(Y_arr * sizeof(double));
+	}
 	for (int i = 0; i < X_arr; i++)
 	{
 		for (int j = 0; j < Y_arr; j++)
-			printf("%lf", array_heap[i][j] + array_heapi[i][j]);
-		printf("\n ");
+		{
+			x[i][j] = array_heap[i][j] + array_heapi[i][j];
+		}
 	}
+	return x;
 }
 
-void sub_matrix(double** array_heap, double** array_heapi, int X_arr, int Y_arr)
+double** sub_matrix(double** array_heap, double** array_heapi, int X_arr, int Y_arr)
 {
+	double** x = (double**)malloc(X_arr * sizeof(double*));
+	for (int i = 0; i < X_arr; ++i)
+	{
+		x[i] = (double*)malloc(Y_arr * sizeof(double));
+	}
 	for (int i = 0; i < X_arr; i++)
 	{
 		for (int j = 0; j < Y_arr; j++)
-			printf("%lf", array_heap[i][j] - array_heapi[i][j]);
-		printf("\n ");
+		{
+			x[i][j] = array_heap[i][j] - array_heapi[i][j];
+		}
 	}
+	return x;
 }
 
 void det_matrix(double** array_heap, int X_arr, int Y_arr)
@@ -90,11 +103,10 @@ void det_matrix(double** array_heap, int X_arr, int Y_arr)
 int main()
 {
 	int arr_X, arr_Y;
-	//const int N = 12;
 	char p;
 	double d;
 	printf("What we want to do?\n 1-summ;\n 2-sub; \n 3-multip; \n 4-div; \n 5-exp; \n 6-summ_matrix;\n 7-sub_matrix;\n 8-det_matrix;\n");
-	scanf_s("%c", &p);
+	scanf_s("%c", &p, 1);
 	switch (p)
 	{
 	case '+':
@@ -169,6 +181,7 @@ int main()
 			scanf_s("%d%d", &arr_X, &arr_Y);
 			double** array_heap = (double**)malloc(arr_X * sizeof(double*));
 			double** array_heapi = (double**)malloc(arr_X * sizeof(double*));
+
 			for (int i = 0; i < arr_X; ++i)
 			{
 				array_heap[i] = (double*)malloc(arr_Y * sizeof(double));
@@ -177,22 +190,34 @@ int main()
 			{
 				array_heapi[i] = (double*)malloc(arr_Y * sizeof(double));
 			}
+
 			input_array(array_heap, arr_X, arr_Y);
 			input_array(array_heapi, arr_X, arr_Y);
 			print_array(array_heap, arr_X, arr_Y);
 			printf("\n ");
 			print_array(array_heapi, arr_X, arr_Y);
 			printf("\n ");
-			summ_matrix(array_heap, array_heapi, arr_X, arr_Y);
+			double** S = summ_matrix(array_heap, array_heapi, arr_X, arr_Y);
+			print_array(S, arr_X, arr_Y);
+			FILE* fp;
+			fopen_s(&fp, "answer.txt", "w");
+			for (int i = 0; i < arr_X; ++i)
+			{
+				for (int j = 0; j < arr_Y; ++j)
+				{
+					fprintf(fp, "%lf ", S[i][j]);
+				}
+				fprintf(fp, "\n");
+			}
 			for (int i = 0; i < arr_X; i++)
 				free(array_heap[i]);
 			free(array_heap);
 			for (int i = 0; i < arr_X; i++)
 				free(array_heapi[i]);
 			free(array_heapi);
-			FILE* fp;
-			fopen_s(&fp, "answer.txt", "w");
-			fprintf(fp, "%lf", summ_matrix);
+			for (int i = 0; i < arr_X; i++)
+				free(S[i]);
+			free(S);
 			fclose(fp);
 			return 0;
 		}
@@ -204,6 +229,7 @@ int main()
 			scanf_s("%d%d", &arr_X, &arr_Y);
 			double** array_heap = (double**)malloc(arr_X * sizeof(double*));
 			double** array_heapi = (double**)malloc(arr_X * sizeof(double*));
+
 			for (int i = 0; i < arr_X; ++i)
 			{
 				array_heap[i] = (double*)malloc(arr_Y * sizeof(double));
@@ -212,19 +238,35 @@ int main()
 			{
 				array_heapi[i] = (double*)malloc(arr_Y * sizeof(double));
 			}
+
 			input_array(array_heap, arr_X, arr_Y);
 			input_array(array_heapi, arr_X, arr_Y);
 			print_array(array_heap, arr_X, arr_Y);
 			printf("\n ");
 			print_array(array_heapi, arr_X, arr_Y);
 			printf("\n ");
-			sub_matrix(array_heap, array_heapi, arr_X, arr_Y);
+			double** S = sub_matrix(array_heap, array_heapi, arr_X, arr_Y);
+			print_array(S, arr_X, arr_Y);
+			FILE* fp;
+			fopen_s(&fp, "answer.txt", "w");
+			for (int i = 0; i < arr_X; ++i)
+			{
+				for (int j = 0; j < arr_Y; ++j)
+				{
+					fprintf(fp, "%lf ", S[i][j]);
+				}
+				fprintf(fp, "\n");
+			}
 			for (int i = 0; i < arr_X; i++)
 				free(array_heap[i]);
 			free(array_heap);
 			for (int i = 0; i < arr_X; i++)
 				free(array_heapi[i]);
 			free(array_heapi);
+			for (int i = 0; i < arr_X; i++)
+				free(S[i]);
+			free(S);
+			fclose(fp);
 			return 0;
 		}
 	}
@@ -248,10 +290,17 @@ int main()
 			break;
 		}
 	}
+	case 'V':
+	{
 
+
+
+	}
 	default:
 	{
 	}
 	}
 	return 0;
 }
+
+
